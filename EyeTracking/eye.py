@@ -1,11 +1,10 @@
 import math
 import numpy as np
 import cv2
-from .pupil import Pupil
+from pupil import Pupil
 
 
 class Eye(object):
-
     LEFT_EYE_POINTS = [36, 37, 38, 39, 40, 41]
     RIGHT_EYE_POINTS = [42, 43, 44, 45, 46, 47]
 
@@ -48,7 +47,7 @@ class Eye(object):
         self.center = (width / 2, height / 2)
 
     def _blinking_ratio(self, landmarks, points):
-        
+
         left = (landmarks.part(points[0]).x, landmarks.part(points[0]).y)
         right = (landmarks.part(points[3]).x, landmarks.part(points[3]).y)
         top = self._middle_point(landmarks.part(points[1]), landmarks.part(points[2]))
@@ -65,7 +64,7 @@ class Eye(object):
         return ratio
 
     def _analyze(self, original_frame, landmarks, side, calibration):
-        
+
         if side == 0:
             points = self.LEFT_EYE_POINTS
         elif side == 1:
